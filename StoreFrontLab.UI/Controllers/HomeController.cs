@@ -4,25 +4,25 @@ namespace StoreFrontLab.UI.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpGet]
+        //[HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
-        [Authorize]
+        //[HttpGet]
+        //[Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            
 
             return View();
         }
 
-        [HttpGet]
+        //[HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            
 
             return View();
         }
