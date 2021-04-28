@@ -374,13 +374,17 @@
     <Content Include="configs\Connections.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include=".gitignore" />
+    <Content Include=".gitignore">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -454,6 +458,8 @@
     <Content Include="_Archive\assets\vendor\boxicons\fonts\boxicons.ttf" />
     <Content Include="_Archive\assets\vendor\boxicons\fonts\boxicons.woff" />
     <Content Include="_Archive\assets\vendor\boxicons\fonts\boxicons.woff2" />
+    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Shared\_SalesAdvertisementPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
