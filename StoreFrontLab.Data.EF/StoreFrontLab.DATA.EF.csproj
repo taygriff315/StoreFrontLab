@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Manufacturer.cs">
       <DependentUpon>StoreFront.tt</DependentUpon>
     </Compile>
@@ -76,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StoreFront.edmx</DependentUpon>
     </Compile>
+    <Compile Include="StoreFrontMetaData\StoreFrontMetaData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="StoreFront.edmx">

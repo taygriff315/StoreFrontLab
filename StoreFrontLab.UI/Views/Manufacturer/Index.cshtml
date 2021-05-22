@@ -1,0 +1,42 @@
+﻿@model IEnumerable<StoreFrontLab.Data.EF.Manufacturer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufacturerName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufacturerName)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ManufacturerID }) |
+        @Html.ActionLink("Details", "Details", new { id=item.ManufacturerID }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.ManufacturerID })*@
+
+            @Ajax.ActionLink("Delete", "AjaxDelete", "Manufacturers", new { id = item.ManufacturerID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   Confirm = $"Are you sure you want to delete {item.ManufacturerName} from Manufacturers?",
+                   OnSuccess = "deleteConfirmed",
+                   OnFailure = "deleteConfirmed"
+               })
+
+        </td>
+    </tr>
+}
+
+</table>

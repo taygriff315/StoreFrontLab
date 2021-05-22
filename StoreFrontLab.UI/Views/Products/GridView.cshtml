@@ -1,0 +1,34 @@
+﻿@model IEnumerable<StoreFrontLab.Data.EF.Product>
+
+@{
+    ViewBag.Title = "GridView";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<h2>
+    @ViewBag.Title
+<a href="@Url.Action("Index","Products")" class="btn btn-success pull-right">Table View</a>
+</h2>
+<div id="productGrid">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="course">
+                <a href="@Url.Action("Details", "Products", new { id=item.ProductID})">
+                    <img src="~/Content/css/img/prodImgs/@item.ProductImage" alt="@item.ProductName" />
+                    <i class="fa fa-link"></i>
+                </a>
+                <a class="course-details" href="@Url.Action("Details", "Products", new { id=item.ProductID})">@item.ProductName</a>
+                <div>
+                    <span class="course-category" >@Html.DisplayFor(model => item.Price)</span>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

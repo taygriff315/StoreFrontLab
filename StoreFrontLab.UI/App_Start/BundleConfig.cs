@@ -8,7 +8,10 @@ namespace StoreFrontLab.UI
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/modernizr-*",
+                        "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -24,7 +27,13 @@ namespace StoreFrontLab.UI
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                       "~/Content/DataTables/css/jquery.datatables.min.css",
+                      "~/Content/site.css",
+                      "~/Content/style.css"));
+            bundles.Add(new ScriptBundle("~/bundles/template").Include(
+               "~/Scripts/DataTables/jquery.datatables.min.js",
+               "~/Scripts/main.js"
+               ));
         }
     }
 }

@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>BizLand Bootstrap Template - Index</title>
+    <title>Alfredo Pet Store</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+
+
 
     <!-- Favicons -->
     <link href="~/Content/img/favicon.png" rel="icon">
@@ -15,6 +17,7 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
 
     <!-- Vendor CSS Files -->
     <link href="~/Content/vendor/aos/aos.css" rel="stylesheet">
@@ -24,15 +27,23 @@
     <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="~/Content/css/style.css" rel="stylesheet" />
 
+    <!-- Template Main CSS File -->
+    
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/customs.css" rel="stylesheet" />
     <!-- =======================================================
     * Template Name: BizLand - v3.1.0
     * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+
+
+
+
 </head>
 
 <body>
@@ -55,24 +66,57 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <h1 class="logo"><a href="index.html">Alfredo's<span>.</span></a></h1>
+
+
             <!-- Uncomment below if you prefer to use an image logo -->
             @*<a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>*@
 
             <nav id="navbar" class="navbar">
 
                 <ul>
-                    <li><a class="nav-link scrollto active" @Html.ActionLink("Home", "Index", "Home")</a></li>
-                    <li><a class="nav-link scrollto" @Html.ActionLink("About", "About", "Home")</a></li>
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
 
-                    <li><a class="nav-link scrollto" @Html.ActionLink("Products", "Products", "Home")</a></li>
-                    <li><a class="nav-link scrollto" @Html.ActionLink("Contact","Contact","Home")</a></li>
+                    @*<li><a href="@Url.Action("ProductDataTables", "Products")">Store</a></li>*@
+                    <li class="dropdown">
+                        <a href="@Url.Action("ProductDataTables", "Products")">Store<i class="bi bi-chevron-right"></i></a>
+                        <ul>
+                            <li>@Html.ActionLink("Treats", "GetTreats", "Home")</li>
+                            <li>@Html.ActionLink("Toys", "GetToys", "Home")</li>
+                            <li>@Html.ActionLink("Accessories", "GetAcc", "Home")</li>
+                        </ul>
+                            
+                    </li>
+                    <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
+
+
+                    @* test *@
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                        
+                    <li class="dropdown">
+                        <a href="#"><span>Admin</span> <i class="bi bi-chevron-right"></i></a>
+                        <ul>
+                            <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                            <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+                            <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                            <li>@Html.ActionLink("Manufacturers", "Index", "Manufacturers")</li>
+                        </ul>
+                    </li>
                     }
 
+
+                   
+                    <li> @Html.Partial("_LoginPartial")  </li>
+                    <li class="nav-item">
+                        @if (Session["cart"] != null && ((Dictionary<int, StoreFrontLab.UI.Models.CartItemViewModel>)Session["cart"]).Count > 0)
+                        {
+                            <a class="dropdown-item" href="/ShoppingCart/Index">
+                                Cart <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        }
+                    </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -91,11 +135,11 @@
             </div>
         </section>*@<!-- End Hero -->
 
-    <main id="main">
 
-        @RenderBody()
 
-    </main><!-- End #main -->
+    @RenderBody()
+
+    <!-- End #main -->
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
@@ -118,7 +162,7 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>BizLand<span>.</span></h3>
+                        <h3>Alfredo's<span>.</span></h3>
                         <p>
                             A108 Adam Street <br>
                             New York, NY 535022<br>
@@ -133,21 +177,14 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Products</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contact</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
+
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
@@ -183,18 +220,23 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>*@
 
     <!-- Vendor JS Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/Content/vendor/aos/aos.js"></script>
     <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Content/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/Content/vendor/php-email-form/validate.js"></script>
     <script src="~/Content/vendor/purecounter/purecounter.js"></script>
-    <script src="~/Content/vendor/swiper/swiper-bundle.min.js.map"></script>
-    
+    <script src="~/Content/vendor/swiper/swiper-bundle.min.js"></script>
+
     <script src="~/Content/vendor/waypoints/noframework.waypoints.js"></script>
 
-    <!-- Template Main JS File -->
 
+
+    <!-- Template Main JS File -->
+    @*@Scripts.Render("~/bundles/template")*@
+    <script src="https://kit.fontawesome.com/5340a0b345.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/DataTables.js"></script>
     <script src="~/Scripts/js/main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>

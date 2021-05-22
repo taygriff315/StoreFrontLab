@@ -1,0 +1,210 @@
+﻿
+.adSection img {
+    height: 150px;
+    width: 250px;
+    border-radius: 60%;
+}
+
+div.member {
+    border-radius: 65%;
+    box-shadow: 5px 10px #888888;
+}
+
+.aboutSection img {
+    height: 700px;
+    width: 500px;
+    border-radius: 99%;
+    border: 5px solid rgb(5,204,243);
+}
+
+#main {
+    background-color: rgb(5,204,243);
+}
+
+#topbar {
+    background-color: rgb(5,204,243);
+}
+
+#header {
+    background-color: rgb(244,143,0); /*rgb(38,224,216);*/
+}
+
+    #header .logo a span {
+        color: rgb(5,204,243);
+    }
+
+#header .logo a {
+    border: 2px solid rgb(250,215,3);
+    background-color: rgb(250,215,3);
+    border-radius: 95%;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+#main img {
+    display: block; 
+    width: 50%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.section-title h3 span {
+    color: rgb(250,215,3);
+}
+
+
+
+
+
+.section-bg {
+   background-color: rgb(5,204,243);
+}
+
+
+.bout {
+    background-color: white;
+}
+
+.navbar .dropdown ul {
+    background-color: rgb(250,215,3);
+}
+
+    .navbar .dropdown ul a:hover {
+        background-color: rgb(5,204,243);
+        color: rgb(244,143,0)!important;
+        font-weight: 900;
+    }
+
+    .navbar .dropdown ul li:hover {
+        color: rgb(250,215,3);
+    }
+
+#footer .footer-newsletter form input[type="submit"] {
+    background-color: rgb(5,204,243);
+}
+
+
+
+.table-custom td {
+    font-weight: 900 !important;
+    vertical-align: central
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: center;
+    float: left;
+    justify-content: center;
+    vertical-align: central;
+    margin-left: 10%;
+    margin-bottom: 2%;
+}
+
+.contact-title {
+    margin-top: 5% !important;
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(5,204,243, .5);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+}
+
+.custom-log {
+    background-color: rgb(250,215,3);
+    border-radius: 85%;
+    border: 5px solid rgb(250,215,3);
+}
+
+.navbar a {
+    font-weight:900;
+}
+
+.btn-primary {
+    background-color: rgb(5,204,243);
+}
+
+#footer .footer-top .social-links a {
+    background-color: rgb(5,204,243);
+}
+
+.team .member {
+    border: 5px solid rgb(244,143,0);
+}
+
+table.dataTable thead th {
+    background-color: rgb(244,143,0);
+}
+
+.navbar .dropdown ul a {
+    font-weight: 900;
+}
+
+table.dataTable td {
+    font-weight: 600;
+}
+
+textarea.form-control {
+    justify-content: center !important;
+   
+    
+}
+
+.form-control {
+    width: 25%;
+    justify-content: center;
+}
+
+.page-title h2 {
+    color: rgb(5,204,243) !important;
+}
+
+textarea#Message.form-control.text-box.multi-line {
+    justify-content: center;
+}
+
+input.form-control {
+    justify-content: center;
+}
+
+.mobile-nav-toggle {
+    background-color: rgb(250,215,3);
+    border-radius: 75%;
+    border: 2px solid rgb(250,215,3);
+    font-weight: 900;
+    /*rgb(244,143,0);*/
+}
+
+.mobile-nav-toggle.bi-x {
+        color: rgb(5,204,243);
+    }
+
+.navbar-mobile {
+    background-color: rgb(244,143,0);
+}
+
+.navbar-mobile ul {
+    background-color: rgb(5,204,243);
+    }
+
+.navbar-mobile ul li:hover {
+    background-color: rgb(250,215,3);
+    }
+
+    .navbar-mobile .dropdown ul a {
+        background-color: rgb(244,143,0);
+    }
+
+    .navbar-mobile a:hover {
+        color: black!important;
+    }

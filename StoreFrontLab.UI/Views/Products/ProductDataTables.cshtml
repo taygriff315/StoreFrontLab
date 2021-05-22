@@ -1,0 +1,77 @@
+﻿@model IEnumerable<StoreFrontLab.Data.EF.Product>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+<div class="text-center page-title">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<table class="table data-table table-striped table-custom justify-content-evenly">
+    <thead>
+        <tr>
+            
+            <th>
+               
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
+            </th>
+           
+            @*<th></th>*@
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>
+              
+                    <a> <i class="fas fa-shopping-cart"></i>@Html.ActionLink("Purchase", "Details", new { id = item.ProductID })</a>
+                
+                    
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","Products", new { id=item.ProductID})"> <img src="~/Content/css/img/prodImgs/t_@item.ProductImage" alt="Product Image" title="@item.ProductName" /></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName)
+                </td>
+              
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+                </td>*@
+            </tr>
+        }
+        </tbody>
+
+
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".data-table").DataTable();
+        });
+    </script>
+    }

@@ -1,0 +1,98 @@
+﻿@model StoreFrontLab.Data.EF.Product
+
+@{
+    ViewBag.Title = "Product Info";
+}
+
+<div class="text-center page-title">
+    <h2>@ViewBag.Title</h2>
+
+
+    <hr />
+    <dl class="dl-horizontal text-center">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InStock)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductImage)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer.ManufacturerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductType.ProductTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType.ProductTypeName)
+        </dd>
+
+    </dl>
+    <p>
+        @using (Html.BeginForm("AddToCart", "Products", new { @product = Model.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+        {
+            @Html.HiddenFor(p => p.ProductID)
+            <span class="label">Quantity: </span>
+            @Html.TextBox("Qty", 1, new { @class="form-control", @style="max-width: 50px; display: inline"})
+            <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+        }
+
+
+    </p>
+</div>
+<div class="justify-content-center text-center">
+    <img src="~/Content/css/img/prodImgs/@Model.ProductImage" alt="Product Image" title="@Model.ProductName" />
+</div>
+
+<div class="text-center">
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

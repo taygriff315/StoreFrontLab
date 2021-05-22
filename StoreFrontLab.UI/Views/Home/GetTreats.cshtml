@@ -1,0 +1,75 @@
+﻿@model IEnumerable<StoreFrontLab.Data.EF.Product>
+
+@{
+    ViewBag.Title = "Treats";
+}
+
+<div class="text-center page-title"><h2>@ViewBag.Title</h2></div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".data-table").DataTable();
+        });
+    </script>
+}
+
+
+
+<table class="table data-table table-custom table-striped justify-content-evenly">
+
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
+            </th>
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a> <i class="fas fa-shopping-cart"></i>@Html.ActionLink("Purchase", "Details", "Products", new { id = item.ProductID }, null)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","Products", new { id=item.ProductID})"> <img src="~/Content/css/img/prodImgs/t_@item.ProductImage" alt="Product Image" title="@item.ProductName" /></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName)
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
