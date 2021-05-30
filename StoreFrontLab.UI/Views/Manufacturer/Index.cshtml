@@ -7,7 +7,7 @@
 <h2>Index <i class="fas fa-paw"></i></h2>
 
 <p>
-    <button id="toggleManufacturerCreate" class="btn btn-primary">   +   </button>
+    <button id="toggleManufacturerCreate" class="btn btn-primary"><i class="fas fa-plus-square"></i>Add Manufacturer</button>
 </p>
 
 <div id="ManufacturerCreate">
@@ -45,15 +45,17 @@
             @Html.ActionLink("Details", "Details", new { id=item.ManufacturerID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ManufacturerID })*@
 
-            <a href="" class="DetailsLink" id="@item.ManufacturerID">Details</a>
-            <a href="" class="EditLink" id="@item.ManufacturerID">Edit</a>
-            @Ajax.ActionLink("Delete", "ManufacturerDelete", "Manufacturer", new { id= item.ManufacturerID}, new AjaxOptions
-               {
-                    HttpMethod = "POST",
-                    Confirm = $"Are you sure you want to delete{item.ManufacturerName} from Manufacturers?",
-                    OnSuccess = "deleteConfirmed",
-                    OnFailure = "deleteConfirmed"
-               })
+            <a href="" class="DetailsLink" id="@item.ManufacturerID"><i class="fas fa-info-circle"></i></a> |
+            <a href="" class="EditLink" id="@item.ManufacturerID"><i class="fas fa-edit"></i></a> |
+            @Ajax.ActionLink(" ", "ManufacturerDelete", "Manufacturer", new { id= item.ManufacturerID}, new AjaxOptions
+       {
+           HttpMethod = "POST",
+           Confirm = $"Are you sure you want to delete{item.ManufacturerName} from Manufacturers?",
+           OnSuccess = "deleteConfirmed",
+           OnFailure = "deleteConfirmed"
+
+
+       }, new { @class = "fas fa-trash-alt" })
 
         </td>
     </tr>

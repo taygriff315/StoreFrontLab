@@ -1,16 +1,16 @@
 ﻿@model StoreFrontLab.Data.EF.Product
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Product";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-center">Are you sure you want to delete this?</h3>
 <div>
-    <h4>Product</h4>
+ 
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal text-center justify-content-center">
         <dt>
             @Html.DisplayNameFor(model => model.UnitsSold)
         </dt>
@@ -31,9 +31,10 @@
             @Html.DisplayNameFor(model => model.ProductImage)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductImage)
-        </dd>
+        <dt>
+            @*@Html.DisplayFor(modelItem => item.ProductImage)*@
+            <img src="~/Content/css/img/prodImgs/t_@Model.ProductImage" alt="Product Image" title="@Model.ProductName" />
+        </dt>
 
         <dt>
             @Html.DisplayNameFor(model => model.Price)
@@ -72,9 +73,11 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+      
+                <a href="@Url.Action("Index","Products")" class="btn btn-primary">Back to List</a>
+           
         </div>
     }
 </div>

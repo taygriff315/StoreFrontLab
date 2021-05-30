@@ -1,21 +1,21 @@
 ﻿@model StoreFrontLab.Data.EF.Product
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Product";
 }
 <div class="text-center">
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
 </div>
 @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
+<div class="form-horizontal text-center">
 
     <hr />
-    <div class="form-group">
+    <div class="form-group text-center">
         @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6 justify-content-center">
+        <div class="col-md-12 justify-content-center">
             @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
         </div>
@@ -24,43 +24,43 @@
     @Html.HiddenFor(model => model.ProductID)
     @*@Html.HiddenFor(model => model.ProductImage)*@
 
-    <div class="form-group">
+    <div class="form-group text-center justify-content-center">
         @Html.LabelFor(model => model.ProductTypeID, "ProductTypeID", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
+        <div class="col-md-12 text-center justify-content-center d-flex">
             @Html.DropDownList("ProductTypeID", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ProductTypeID, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group text-center">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6 justify-content-center">
+        <div class="col-md-12 justify-content-center">
             @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group text-center justify-content-center">
         @Html.LabelFor(model => model.ManufacturerID, "ManufacturerID", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
+        <div class="col-md-12 text-center justify-content-center d-flex">
             @Html.DropDownList("ManufacturerID", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ManufacturerID, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
+    
+    <div class="form-group text-center">
         @Html.LabelFor(model => model.UnitsSold, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
+        <div class="col-md-12">
             @Html.EditorFor(model => model.UnitsSold, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UnitsSold, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group text-center">
         @Html.LabelFor(model => model.InStock, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
-            <div class="checkbox">
+        <div class="col-md-12">
+            <div class="checkbox text-center">
                 @Html.EditorFor(model => model.InStock)
                 @Html.ValidationMessageFor(model => model.InStock, "", new { @class = "text-danger" })
             </div>
@@ -75,9 +75,9 @@
             </div>
         </div>*@
 
-    <div class="form-group">
+    <div class="form-group text-center">
         @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
+        <div class="col-md-12 text-center">
             @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
         </div>
@@ -91,9 +91,9 @@
             </div>
         </div>*@
 
-    <div class="form-group">
+    <div class="form-group text-center">
         @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
+        <div class="col-md-12 text-center">
             @*@Html.EditorFor(model => model.ProductImage, new { htmlAttributes = new { @class = "form-control" } })*@
             <img src="~/Content/css/img/prodImgs/@Model.ProductImage" alt="@Model.ProductName" style="max-width:100px;" />
 
@@ -103,14 +103,14 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-6">
-            <input type="submit" value="Save" class="btn btn-default" />
+    <div class="form-group text-center">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="Save" class="btn btn-success" />
         </div>
     </div>
 </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="text-center">
+    <a href="@Url.Action("Index","Products")" class="btn btn-primary">Back to List</a>
 </div>

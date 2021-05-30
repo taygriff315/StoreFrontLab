@@ -75,6 +75,10 @@ namespace StoreFrontLab.Data.EF //.StoreFrontMetaData
         [Display(Name ="Product Name")]
         [StringLength(50, ErrorMessage ="Name cannont contain more than 50 characters")]
         public string ProductName { get; set; }
+
+        [Display(Name ="Seasonal")]
+        [Required(ErrorMessage ="*Required")]
+        public bool IsSeasonal { get; set; }
     }
 
     [MetadataType(typeof(ProductMetaData))]
@@ -103,6 +107,10 @@ namespace StoreFrontLab.Data.EF //.StoreFrontMetaData
 
     #endregion
 
+    #region RolesMetaData
+
+   
+    #endregion
 
 
 

@@ -4,12 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details.</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>Roles.</h4>
+    
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal text-center">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -18,14 +18,14 @@
         </dd>
     </dl>
 </div>
-<h4>List of users in this role</h4>
+<h4 class="text-center">List of users in this role</h4>
 @if (ViewBag.UserCount == 0)
 {
     <hr />
     <p>No users found in this role.</p>
 }
 
-<table class="table">
+<table class="table text-center justify-content-center">
 
     @foreach (var item in ViewBag.Users)
     {
@@ -36,9 +36,9 @@
         </tr>
     }
 </table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class="btn btn-warning"}) |
+    <a href="@Url.Action("Index","RolesAdmin")" class="btn btn-primary">Back to List</a>
 </p>
 
 

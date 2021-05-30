@@ -36,6 +36,21 @@ namespace StoreFrontLab.UI.Controllers
             return View(products.ToList());
         }
 
+        public ActionResult TreatsDataTables()
+        {
+            var treats = db.Products.Include(x => x.Manufacturer).Include(x => x.ProductType).Where(x => x.ProductType.ProductTypeName.ToLower() == "treats");
+            return View(treats.ToList());
+        }
+        public ActionResult ToysDataTables()
+        {
+            var treats = db.Products.Include(x => x.Manufacturer).Include(x => x.ProductType).Where(x => x.ProductType.ProductTypeName.ToLower() == "toys");
+            return View(treats.ToList());
+        }
+        public ActionResult AccDataTables()
+        {
+            var treats = db.Products.Include(x => x.Manufacturer).Include(x => x.ProductType).Where(x => x.ProductType.ProductTypeName.ToLower() == "accessories");
+            return View(treats.ToList());
+        }
 
         public ActionResult GridView()
         {

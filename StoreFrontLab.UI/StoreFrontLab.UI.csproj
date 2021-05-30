@@ -747,6 +747,9 @@
     <Content Include="Views\Products\ChewyGridView.cshtml" />
     <Content Include="Views\Products\OlRoyGridView.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
+    <Content Include="Views\Products\TreatsDataTables.cshtml" />
+    <Content Include="Views\Products\ToysDataTables.cshtml" />
+    <Content Include="Views\Products\AccDataTables.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -55,11 +55,13 @@ div.member {
 }
 
 
-
+.fa:hover, .far:hover, .fas:hover {
+    color: rgb(244,143,0);
+}
 
 
 .section-bg {
-   background-color: rgb(5,204,243);
+    background-color: rgb(5,204,243);
 }
 
 
@@ -350,4 +352,23 @@ table.table th {
 
 #Name-error, #Message-error, #EmailAddress-error {
     display: block;
+}
+ 
+.form-group input, .form-group textarea{
+    margin: 1%;
+}
+
+i.fas.fa-dog:hover {
+    border: 1px solid rgb(16,110,234);
+    box-shadow: 4px 4px 2px rgb(16,110,234);
+   
+}
+
+i.far.fa-images:hover {
+    color: rgb(244,143,0);
+}
+
+
+i.far.fa-images {
+    color: rgba(5,204,243, .6);
 }
