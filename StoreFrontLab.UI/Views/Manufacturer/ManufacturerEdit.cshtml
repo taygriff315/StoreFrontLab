@@ -1,0 +1,31 @@
+﻿@model StoreFrontLab.Data.EF.Manufacturer
+
+@using (Html.BeginForm("ManufacturerEdit", "Manufacturer", FormMethod.Post, new { id = "ManufacturerEditForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table>
+        <tr>
+            @Html.HiddenFor(model => model.ManufacturerID)
+
+            <td>
+                @Html.EditorFor(model => model.ManufacturerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ManufacturerName, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-contorl" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.State, new { AllowHtmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                <input type="button" id="saveUpdate" value="Update Manufacturer" class="btn btn-info" />
+            </td>
+
+        </tr>
+    </table>
+}

@@ -8,7 +8,7 @@
     <title>Alfredo Pet Store</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
+ 
 
 
     <!-- Favicons -->
@@ -17,6 +17,9 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
 
 
     <!-- Vendor CSS Files -->
@@ -29,7 +32,7 @@
 
 
     <!-- Template Main CSS File -->
-    
+
     <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
@@ -75,39 +78,52 @@
 
                 <ul>
                     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="@Url.Action("About", "Home")">About</a></li>
 
                     @*<li><a href="@Url.Action("ProductDataTables", "Products")">Store</a></li>*@
                     <li class="dropdown">
-                        <a href="@Url.Action("ProductDataTables", "Products")">Store<i class="bi bi-chevron-right"></i></a>
+                        <a href="@Url.Action("GridView", "Products")">Store<i class="fas fa-bone"></i></a>
                         <ul>
-                            <li>@Html.ActionLink("Treats", "GetTreats", "Home")</li>
-                            <li>@Html.ActionLink("Toys", "GetToys", "Home")</li>
-                            <li>@Html.ActionLink("Accessories", "GetAcc", "Home")</li>
+                            <li>@Html.ActionLink("Treats", "TreatsGridView", "Products")</li>
+                            <li>@Html.ActionLink("Toys", "ToysGridView", "Products")</li>
+                            <li>@Html.ActionLink("Accessories", "AccGridView", "Products")</li>
+
+                            @* Inner dropdown *@
+
+                            <li class="dropdown">
+                                <a href="#"><span>Manufacturers</span> <i class="fas fa-bone"></i></a>
+                                <ul>
+                                    <li>@Html.ActionLink("Kong", "KongGridView", "Products")</li>
+                                    <li>@Html.ActionLink("Chewy", "ChewyGridView", "Products")</li>
+                                    <li>@Html.ActionLink("Ol'Roy", "OlRoyGridView", "Products")</li>
+                                </ul>
+                            </li>
                         </ul>
-                            
+
                     </li>
+
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+
                     <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
 
 
-                    @* test *@
+                  
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        
-                    <li class="dropdown">
-                        <a href="#"><span>Admin</span> <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
-                            <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
-                            <li>@Html.ActionLink("Products", "Index", "Products")</li>
-                            <li>@Html.ActionLink("Manufacturers", "Index", "Manufacturers")</li>
-                        </ul>
-                    </li>
+
+                        <li class="dropdown">
+                            <a href="#"><span>Admin</span> <i class="fas fa-bone"></i></a>
+                            <ul>
+                                <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                                <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+                                <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                                <li>@Html.ActionLink("Manufacturers", "Index", "Manufacturer")</li>
+                            </ul>
+                        </li>
                     }
 
 
-                   
+
                     <li> @Html.Partial("_LoginPartial")  </li>
                     <li class="nav-item">
                         @if (Session["cart"] != null && ((Dictionary<int, StoreFrontLab.UI.Models.CartItemViewModel>)Session["cart"]).Count > 0)
@@ -148,7 +164,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <p>Stay up to date on our latest offers!! (Not actually connected to a newsletter)</p>
                         <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
                         </form>
@@ -175,10 +191,10 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Products</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contact</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("About", "Home")">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("GridView", "Products")">Products</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Contact", "Home")">Contact</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
@@ -189,7 +205,7 @@
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Our Social Networks</h4>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                        <p>Stay connected with us on social media</p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

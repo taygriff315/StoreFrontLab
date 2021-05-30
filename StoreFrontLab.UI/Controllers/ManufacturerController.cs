@@ -23,7 +23,7 @@ namespace StoreFrontLab.UI.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public JsonResult ManufacturerAjaxDelete(int id)
+        public JsonResult ManufacturerDelete(int id)
         {
             Manufacturer manufacturer = db.Manufacturers.Find(id);
 
@@ -36,20 +36,37 @@ namespace StoreFrontLab.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult ManufacturerAjaxCreate(Manufacturer manufacturer)
+        public JsonResult ManufacturerCreate(Manufacturer manufacturer)
         {
             db.Manufacturers.Add(manufacturer);
             db.SaveChanges();
             return Json(manufacturer);
         }
 
+        [HttpGet]
+        public PartialViewResult ManufacturerDetails(int id)
+        {
+            Manufacturer manufacturer = db.Manufacturers.Find(id);
+            return PartialView(manufacturer);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult ManufacturerAjaxEdit(Manufacturer manufacturer)
+        public JsonResult ManufacturerEdit(Manufacturer manufacturer)
         {
             db.Entry(manufacturer).State = EntityState.Modified;
             db.SaveChanges();
             return Json(manufacturer);
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

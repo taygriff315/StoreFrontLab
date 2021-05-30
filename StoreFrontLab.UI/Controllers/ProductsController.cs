@@ -36,11 +36,49 @@ namespace StoreFrontLab.UI.Controllers
             return View(products.ToList());
         }
 
+
         public ActionResult GridView()
         {
             List<Product> products = db.Products.ToList();
             return View(products);
         }
+
+        public ActionResult ToysGridView()
+        {
+            var toys = db.Products.Where(x => x.ProductType.ProductTypeName.ToLower() == "toys").ToList();
+            return View(toys);
+        }
+
+        public ActionResult AccGridView()
+        {
+            var acc = db.Products.Where(x => x.ProductType.ProductTypeName.ToLower() == "accessories").ToList();
+            return View(acc);
+        }
+
+        public ActionResult TreatsGridView()
+        {
+            var treats = db.Products.Where(x => x.ProductType.ProductTypeName.ToLower() == "treats").ToList();
+            return View(treats);
+        }
+
+        public ActionResult KongGridView()
+        {
+            var kong = db.Products.Where(x => x.Manufacturer.ManufacturerName.ToLower() == "kong").ToList();
+            return View(kong);
+        }
+
+        public ActionResult ChewyGridView()
+        {
+            var chewy = db.Products.Where(x => x.Manufacturer.ManufacturerName.ToLower() == "chewy").ToList();
+            return View(chewy);
+        }
+
+        public ActionResult OlRoyGridView()
+        {
+            var olRoy = db.Products.Where(x => x.Manufacturer.ManufacturerName == "Ol'Roy").ToList();
+            return View(olRoy);
+        }
+
 
         // GET: Products/Details/5
         public ActionResult Details(short? id)
@@ -107,7 +145,7 @@ namespace StoreFrontLab.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductTypeID,ManufacturerID,UnitsSold,InStock,ProductImage,Price,ProductName")] Product product, HttpPostedFileBase coverImg)
+        public ActionResult Create([Bind(Include = "ProductID,ProductTypeID,ManufacturerID,UnitsSold,InStock,ProductImage,Price,ProductName,Description")] Product product, HttpPostedFileBase coverImg)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +165,10 @@ namespace StoreFrontLab.UI.Controllers
                         int maxImageSize = 500;
                         int maxThumbSize = 100;
                         ImageServices.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+                    }
+                    else
+                    {
+                        file = "noImage.png";
                     }
 
                 }
@@ -164,7 +206,7 @@ namespace StoreFrontLab.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductTypeID,ManufacturerID,UnitsSold,InStock,ProductImage,Price,ProductName")] Product product, HttpPostedFileBase coverImg)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductTypeID,ManufacturerID,UnitsSold,InStock,ProductImage,Price,ProductName,Description")] Product product, HttpPostedFileBase coverImg)
         {
             if (ModelState.IsValid)
             {

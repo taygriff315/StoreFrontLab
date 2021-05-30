@@ -6,11 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="23c3d515d1224ab0880d77a60c7a427a" Name="Diagram1">
         <EntityTypeShape EntityType="StoreFrontModel.Manufacturer" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreFrontModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.ProductType" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <AssociationConnector Association="StoreFrontModel.FK_Products_Manufacturer" ManuallyRouted="false" />
-        <AssociationConnector Association="StoreFrontModel.FK_Products_ProductType" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="StoreFrontModel.Product" Width="1.5" PointX="3" PointY="3" />
+        <AssociationConnector Association="StoreFrontModel.FK_Products_Manufacturer" />
+        <AssociationConnector Association="StoreFrontModel.FK_Products_ProductType" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

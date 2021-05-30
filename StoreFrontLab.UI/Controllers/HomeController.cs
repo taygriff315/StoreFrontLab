@@ -85,7 +85,7 @@ namespace StoreFrontLab.UI.Controllers
             string message = $"You have recieved an email from {cvm.Name} with a subject of " +
                 $"{cvm.Subject}. Respond to {cvm.EmailAddress}. Message: <br/>{cvm.Message}";
 
-            MailMessage mm = new MailMessage("admin@tpgcode.com", "titleist315@outlook.com", cvm.Subject, message);
+            MailMessage mm = new MailMessage("admin@tpgcode.com", "titleist315@gmail.com", cvm.Subject, message);
 
             //IsBodyHtml determines if the rendered message should be in HTML
             mm.IsBodyHtml = true;

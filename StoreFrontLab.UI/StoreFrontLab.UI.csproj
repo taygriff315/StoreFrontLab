@@ -200,6 +200,7 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\img\about.jpg" />
     <Content Include="Content\css\img\apple-touch-icon.png" />
+    <Content Include="Content\css\img\chewyLogo.png" />
     <Content Include="Content\css\img\chickennugs.jfif" />
     <Content Include="Content\css\img\clients\client-1.png" />
     <Content Include="Content\css\img\clients\client-2.png" />
@@ -208,14 +209,17 @@
     <Content Include="Content\css\img\clients\client-5.png" />
     <Content Include="Content\css\img\clients\client-6.png" />
     <Content Include="Content\css\img\dogbone.png" />
+    <Content Include="Content\css\img\dogHouse.jpg" />
     <Content Include="Content\css\img\DogHouseCastle.jfif" />
     <Content Include="Content\css\img\DogLogo.jpg" />
     <Content Include="Content\css\img\DogLogoCrop.jpg" />
     <Content Include="Content\css\img\donutbandana.jpg" />
     <Content Include="Content\css\img\favicon.png" />
     <Content Include="Content\css\img\hero-bg.jpg" />
+    <Content Include="Content\css\img\kongLogo.png" />
     <Content Include="Content\css\img\meAndAlfredo.jpg" />
     <Content Include="Content\css\img\meAndAlfredoEdit.jpg" />
+    <Content Include="Content\css\img\olroyLogo.jpg" />
     <Content Include="Content\css\img\portfolio\portfolio-1.jpg" />
     <Content Include="Content\css\img\portfolio\portfolio-2.jpg" />
     <Content Include="Content\css\img\portfolio\portfolio-3.jpg" />
@@ -635,9 +639,6 @@
     <Content Include="configs\Connections.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include=".gitignore">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
@@ -736,6 +737,16 @@
     <Content Include="Views\Home\GetTreats.cshtml" />
     <Content Include="Views\Home\GetToys.cshtml" />
     <Content Include="Views\Home\GetAcc.cshtml" />
+    <Content Include="Views\Manufacturer\ManufacturerCreate.cshtml" />
+    <Content Include="Views\Manufacturer\ManufacturerEdit.cshtml" />
+    <Content Include="Views\Manufacturer\ManufacturerDetails.cshtml" />
+    <Content Include="Views\Products\ToysGridView.cshtml" />
+    <Content Include="Views\Products\AccGridView.cshtml" />
+    <Content Include="Views\Products\TreatsGridView.cshtml" />
+    <Content Include="Views\Products\KongGridView.cshtml" />
+    <Content Include="Views\Products\ChewyGridView.cshtml" />
+    <Content Include="Views\Products\OlRoyGridView.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

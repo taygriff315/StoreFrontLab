@@ -7,7 +7,7 @@
 <h2>Products</h2>
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-<p>
+<p class="btn btn-primary text-center justify-content-center create-button">
     @Html.ActionLink("Create New", "Create")
 </p>
 }
@@ -28,6 +28,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
          @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
@@ -57,6 +60,9 @@
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName)
         </td>
         <td>
@@ -68,9 +74,9 @@
 
         <td class="adminButtons">
             
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }, new { @class="btn btn-success"}) |
+            @Html.ActionLink("Details", "Details", new { id = item.ProductID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class= "btn btn-danger"})
         </td>
         }
     </tr>

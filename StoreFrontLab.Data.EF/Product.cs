@@ -22,6 +22,8 @@ namespace StoreFrontLab.Data.EF
         public string ProductImage { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string ProductName { get; set; }
+        public string Description { get; set; }
+        public bool IsSeasonal { get; set; }
     
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ProductType ProductType { get; set; }

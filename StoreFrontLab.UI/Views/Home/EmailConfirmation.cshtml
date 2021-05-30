@@ -1,0 +1,64 @@
+﻿@model StoreFrontLab.UI.Models.ContactViewModel
+
+<div class="text-center page-title"><h2 class="">Let Us Know What You Think</h2></div>
+
+
+<div class="justify-content-center">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal contact-form-custom text-center justify-content-center">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group justify-content-center">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                <div class="justify-content-center">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="form-group justify-content-center text-center">
+
+                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label" })
+                <div class="justify-content-center text-center">
+                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="form-group justify-content-center">
+                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
+                <div class="justify-content-center">
+                    @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group justify-content-center">
+                @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label" })
+                <div class="justify-content-center">
+                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group justify-content-center">
+                <div>
+                    <input type="submit" value="Send" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

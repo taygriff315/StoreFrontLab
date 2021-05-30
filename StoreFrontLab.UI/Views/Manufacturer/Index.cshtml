@@ -1,42 +1,199 @@
 ﻿@model IEnumerable<StoreFrontLab.Data.EF.Manufacturer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manufacturers";
 }
 
-<h2>Index</h2>
+<h2>Index <i class="fas fa-paw"></i></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button id="toggleManufacturerCreate" class="btn btn-primary">   +   </button>
 </p>
-<table class="table">
+
+<div id="ManufacturerCreate">
+    @Html.Partial("ManufacturerCreate", new StoreFrontLab.Data.EF.Manufacturer())
+</div>
+
+<table class="table" id="ManufacturerTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ManufacturerName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+    <tr id="#Manufacturer-@item.ManufacturerID">
         <td>
             @Html.DisplayFor(modelItem => item.ManufacturerName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
             @*@Html.ActionLink("Edit", "Edit", new { id=item.ManufacturerID }) |
-        @Html.ActionLink("Details", "Details", new { id=item.ManufacturerID }) |
-        @Html.ActionLink("Delete", "Delete", new { id=item.ManufacturerID })*@
+            @Html.ActionLink("Details", "Details", new { id=item.ManufacturerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ManufacturerID })*@
 
-            @Ajax.ActionLink("Delete", "AjaxDelete", "Manufacturers", new { id = item.ManufacturerID }, new AjaxOptions
+            <a href="" class="DetailsLink" id="@item.ManufacturerID">Details</a>
+            <a href="" class="EditLink" id="@item.ManufacturerID">Edit</a>
+            @Ajax.ActionLink("Delete", "ManufacturerDelete", "Manufacturer", new { id= item.ManufacturerID}, new AjaxOptions
                {
-                   HttpMethod = "POST",
-                   Confirm = $"Are you sure you want to delete {item.ManufacturerName} from Manufacturers?",
-                   OnSuccess = "deleteConfirmed",
-                   OnFailure = "deleteConfirmed"
+                    HttpMethod = "POST",
+                    Confirm = $"Are you sure you want to delete{item.ManufacturerName} from Manufacturers?",
+                    OnSuccess = "deleteConfirmed",
+                    OnFailure = "deleteConfirmed"
                })
 
         </td>
     </tr>
-}
+    }
 
 </table>
+
+<div id="ManufacturerDetails"></div>
+
+@section scripts {
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+
+        //Delete
+        function deleteConfirmed(response, status, data) {
+            var rowId = '#Manufacturer-' + response.id
+            $("#ManufacturerTable").find(rowId).remove();
+
+            //Status Message:
+            $("MessageContent").html("<div class='alert alert-success'>" + response.message + "</div>");
+        }
+
+        //Failed Delete
+        function deleteFailed(response, status, data) {
+            $("#MessageContent").html("<div class='alert alert-danger'>Delete unsuccessful.")
+        }
+
+        //Details
+
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault();
+
+            $('#ManufacturerDetails').data('mId', $(this).attr('id'))
+                .dialog({
+                    width: 400,
+                    height: 225,
+                    open: function () {
+                        var manId = $(this).data('mId');
+                        $(this).load("/Manufacturer/ManufacturerDetails/" + manId);
+                    },
+                    title: "Manufacturer Details",
+                    modal: true,
+                    resizeable: false
+                });
+        });
+
+        //Create
+        $("#ManufacturerCreate").hide();
+        $("#toggleManufacturerCreate").click(function () {
+            $("#ManufacturerCreate").toggle();
+        });
+
+
+
+        $("#ManufacturerCreateForm").submit(function (e) {
+            var formData = $(this).serializeArray();
+            console.log(formData);
+            e.preventDefault();
+
+            $.ajax({
+                url: "/Manufacturer/ManufacturerCreate",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                error: function (e) {
+                    $("#MessageContent").html("<div class ='alert alert-danger'>There was an issue</div>");
+                },
+                success: function (foo) {
+                    $("#MessageContent").html("<div class='alert alert-success'>Record Added!</div>");
+
+                    $('#ManufacturerCreateForm')[0].reset();
+
+                    $(function () {
+                        var row = '<tr>' + '<td>' + foo.ManufacturerName + '</td>' +
+                            '<td>' + foo.City + '</td>' +
+                            '<td>' + foo.State + '</td>' + '</tr>';
+                           
+                           
+                        $("#ManufacturerTable").append(row);
+                    });
+                }
+            })
+        });
+
+
+        //Update
+
+        var originalContent = null;
+        $('a.EditLink').click(function (e) {
+            e.preventDefault();
+            var manufacturerID = $(this).attr("id");
+
+            var row = $("#Manufacturer-" +manufacturerID).children();
+
+            originalContent = {
+                ManufacturerID: manufacturerID,
+                ManufacturerName: row[0].innerText,
+                City: row[1].innerText,
+                State: row[2].innerText
+            };
+            console.log(originalContent);
+
+            $.get("/Manufacturer/ManufactuerEdit/" + manufacturerID, function (data) {
+                $("#Manufacturer-" + manufacturerID).replaceWith(
+                    '<tr id="Manufacturer-' + manufacturerID + '"><td colspan="5">' + data + '</td></tr>'
+                );
+            });
+        });
+
+        $(document).on("click", "#saveUpdate", function () {
+
+            var formData = $('#ManufacturerEditForm').serializeArray();
+            $('#MessageContent').html("<div class = 'alert alert-info'>Please Wait... </div>");
+
+            $.ajax({
+                url: "/Manufacturer/ManufacturerEdit",
+                type: "POST",
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                    $("#MessageContent").html("<div class='alert alert-success'>The record was updated!</div>");
+                    $("#ManufacturerEditForm")[0].reset();
+
+                    $(function () {
+                        var row = '<tr>' + '<td>' + data.ManufacturerName + '</td>';
+                        $('#Manufacturer-' + data.ManufacturerID).replaceWith(row);
+                    });
+                },
+                error: function () {
+                    var row = '<tr id="Manufacturer-' + originalContent.ManId + '">'
+                    '<td>' + originalContent.ManName + '</td>';
+                    $('Manufacturer-' + data.ManufacturerID).replaceWith(row);
+                }
+            })
+
+        })
+
+
+    </script>
+}

@@ -1,34 +1,39 @@
 ﻿@model IEnumerable<StoreFrontLab.Data.EF.Product>
 
 @{
-    ViewBag.Title = "GridView";
+    ViewBag.Title = "Store";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>@ViewBag.Title <i class="fas fa-paw"></i></h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-<h2>
-    @ViewBag.Title
-<a href="@Url.Action("Index","Products")" class="btn btn-success pull-right">Table View</a>
+
+<h2 class="gallery-title">
+    
+<a href="@Url.Action("ProductDataTables","Products")" class="btn btn-primary">Table View</a>
 </h2>
-<div id="productGrid">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3 col-sm-6 col-xs-6">
-            <div class="course">
-                <a href="@Url.Action("Details", "Products", new { id=item.ProductID})">
-                    <img src="~/Content/css/img/prodImgs/@item.ProductImage" alt="@item.ProductName" />
-                    <i class="fa fa-link"></i>
-                </a>
-                <a class="course-details" href="@Url.Action("Details", "Products", new { id=item.ProductID})">@item.ProductName</a>
-                <div>
-                    <span class="course-category" >@Html.DisplayFor(model => item.Price)</span>
-                </div>
 
+<div class="grid-bg">
+    <div id="productGrid" class="row">
+        <h2>Shop</h2>
+        @foreach (var item in Model)
+        {
+           
+            <div class="card col-md-3" style="width: 18rem;">
+                <div class="other-border">
+                    <a href="@Url.Action("Details","Products", new { id=item.ProductID})"> <img src="~/Content/css/img/prodImgs/t_@item.ProductImage" alt="Product Image" title="@item.ProductName" /></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ProductName</h5>
+                        <hr />
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-info">@item.Manufacturer.ManufacturerName- @item.ProductType.ProductTypeName</p>
+
+                        <a href="@Url.Action("Details","Products", new { id=item.ProductID})" class="btn btn-primary">Buy</a>
+                        <span class="price">  @Html.DisplayFor(modelItem => item.Price)</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    }
+        
+        }
+    </div>
 </div>

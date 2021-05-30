@@ -26,7 +26,7 @@ namespace StoreFrontLab.Data.EF
         }
     
         public virtual DbSet<Manufacturer> Manufacturers { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

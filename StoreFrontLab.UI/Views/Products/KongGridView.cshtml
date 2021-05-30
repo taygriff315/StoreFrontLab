@@ -1,0 +1,38 @@
+﻿@model IEnumerable<StoreFrontLab.Data.EF.Product>
+
+@{
+    ViewBag.Title = "KongGridView";
+}
+
+
+<div class="logo-header">
+    <a href="https://www.kongcompany.com/"><img src="~/Content/css/img/kongLogo.png" /></a>
+</div>
+<h2 class="gallery-title">
+
+    <a href="@Url.Action("GetToys","Home")" class="btn btn-primary">Table View</a>
+</h2>
+
+<div class="grid-bg">
+    <div id="productGrid" class="row">
+        <h2>Shop</h2>
+        @foreach (var item in Model)
+        {
+            <div class="card col-md-4" style="width: 18rem;">
+                <div class="other-border">
+                    <a href="@Url.Action("Details","Products", new { id=item.ProductID})"> <img src="~/Content/css/img/prodImgs/t_@item.ProductImage" alt="Product Image" title="@item.ProductName" /></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ProductName</h5>
+                        <hr />
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-info">@item.Manufacturer.ManufacturerName- @item.ProductType.ProductTypeName</p>
+
+                        <a href="@Url.Action("Details","Products", new { id=item.ProductID})" class="btn btn-primary">Buy</a>
+                        <span class="price">  @Html.DisplayFor(modelItem => item.Price)</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -15,9 +15,18 @@ namespace StoreFrontLab.Data.EF //.StoreFrontMetaData
         [StringLength(50, ErrorMessage ="Cannot contain more than 50 characters")]
         [Display(Name ="Manufacturer")]
         public string ManufacturerName { get; set; }
-       
 
-        
+
+        [Required(ErrorMessage ="You must enter a City")]
+        [StringLength(20, ErrorMessage ="Cannot contain more than 20 characters")]
+        [Display(Name ="City")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "You must enter a State")]
+        [StringLength(2, ErrorMessage = "Cannot contain more than 2 characters")]
+        public string State { get; set; }
+
+
     }
         [MetadataType(typeof(ManufacturerMetaData))]
         public partial class Manufacturer
@@ -37,6 +46,13 @@ namespace StoreFrontLab.Data.EF //.StoreFrontMetaData
         [Required(ErrorMessage = "*Required")]
         [Display(Name = "Manufacturer Id#")]
         public short ManufacturerID { get; set; }
+
+
+        [Required(ErrorMessage ="*Required")]
+        [Display(Name ="Description")]
+        [StringLength(maximumLength:100,ErrorMessage ="Description must be less than 100 characters")]
+        public string Description { get; set; }
+
        
 
         [DisplayFormat(NullDisplayText = "[-N/A-]")]
