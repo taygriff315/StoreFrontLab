@@ -50,6 +50,13 @@ namespace StoreFrontLab.UI.Controllers
             return PartialView(manufacturer);
         }
 
+        [HttpGet]
+        public PartialViewResult ManufacturerEdit(int id)
+        {
+            Manufacturer manufacturer = db.Manufacturers.Find(id);
+            return PartialView(manufacturer);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult ManufacturerEdit(Manufacturer manufacturer)

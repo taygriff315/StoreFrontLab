@@ -146,7 +146,7 @@
 
         //Update
 
-        var originalContent = null;
+        var originalContent;
         $('a.EditLink').click(function (e) {
             e.preventDefault();
             var manufacturerID = $(this).attr("id");
@@ -158,12 +158,13 @@
                 ManufacturerName: row[0].innerText,
                 City: row[1].innerText,
                 State: row[2].innerText
+               
             };
             console.log(originalContent);
 
             $.get("/Manufacturer/ManufactuerEdit/" + manufacturerID, function (data) {
                 $("#Manufacturer-" + manufacturerID).replaceWith(
-                    '<tr id="Manufacturer-' + manufacturerID + '"><td colspan="5">' + data + '</td></tr>'
+                    '<tr id="Manufacturer-' + manufacturerID + '"><td colspan="4">' + data + '</td></tr>'
                 );
             });
         });
@@ -183,18 +184,28 @@
                     $("#ManufacturerEditForm")[0].reset();
 
                     $(function () {
-                        var row = '<tr>' + '<td>' + data.ManufacturerName + '</td>';
+                        var row = '<tr>' +
+                            '<td>' + data.ManufacturerName + '</td>' +
+                            '<td>' + data.City + '</td>' +
+                            '<td>' + data.State + '</td>';
                         $('#Manufacturer-' + data.ManufacturerID).replaceWith(row);
                     });
                 },
-                error: function () {
-                    var row = '<tr id="Manufacturer-' + originalContent.ManId + '">'
-                    '<td>' + originalContent.ManName + '</td>';
-                    $('Manufacturer-' + data.ManufacturerID).replaceWith(row);
-                }
-            })
+                error: function (e) {
+                    $('#MessageContent').html("<div class ='alert alert-warning'>There was an error. Please try again or contact site admin</div>");
 
-        })
+                    $(function () {
+                        var row = '<tr id="Manufacturer-' + originalContent.ManufacturerID + '">'
+                        '<td>' + originalContent.ManufacturerName + '</td>' +
+                            '<td>' + originalContent.City + '</td>' +
+                            '<td>' + originalContent.State + '</td>';
+                        $('Manufacturer-' + data.ManufacturerID).replaceWith(row);
+                    });
+
+                }
+            });
+
+        });
 
 
     </script>

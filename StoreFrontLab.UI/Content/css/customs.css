@@ -55,7 +55,7 @@ div.member {
 }
 
 
-.fa:hover, .far:hover, .fas:hover {
+.fa:hover, .far:hover {
     color: rgb(244,143,0);
 }
 
@@ -371,4 +371,20 @@ i.far.fa-images:hover {
 
 i.far.fa-images {
     color: rgba(5,204,243, .6);
+}
+
+.fas fa-paw:hover {
+    color: rgb(5,204,243)!important;
+}
+
+.fa-info-circle:hover {
+    color: rgb(244,143,0);
+}
+
+.fa-trash-alt:hover {
+    color: rgb(244,143,0);
+}
+
+.fa-edit:hover {
+    color: rgb(244,143,0);
 }
